@@ -1,12 +1,13 @@
+
 from PIL import Image, ImageDraw
 
 WIDTH = 600
 HEIGHT = 400
 
-RE_START = -2
-RE_END = 1
-IM_START = -1
-IM_END = 1
+REAL_START = -2
+REAL_END = 1
+IMG_START = -1
+IMG_END = 1
 
 MAX_ITER = 100
 
@@ -19,19 +20,20 @@ def mandel(c):
     return n
 
 
-im = Image.new('RGB',(WIDTH,HEIGHT),(255,255,255))
+img = Image.new('RGB',(WIDTH,HEIGHT),(255,255,255))
 
-draw = ImageDraw.Draw(im)
+draw = ImageDraw.Draw(img)
 
 for x in range(0,WIDTH):
     for y in range(0, HEIGHT):
-        c = complex(RE_START + (x / WIDTH) * (RE_END - RE_START), IM_START + (y / HEIGHT) * (IM_END - IM_START))
+        c = complex(REAL_START + (x / WIDTH) * (REAL_END - REAL_START), IMG_START + (y / HEIGHT) * (IMG_END - IMG_START))
         m = mandel(c)
 
         color = abs(0 - int(m * 255 / MAX_ITER))
         
         draw.point([x,y],(color, color, color))
 
-im.save("ouput.png",'PNG')
+img.save("ouput.png",'PNG')
+
 
 
