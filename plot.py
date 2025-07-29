@@ -1,5 +1,4 @@
 from PIL import Image, ImageDraw
-from brot import *
 
 WIDTH = 600
 HEIGHT = 400
@@ -9,6 +8,15 @@ RE_END = 1
 IM_START = -1
 IM_END = 1
 
+MAX_ITER = 100
+
+def mandel(c):
+    z = 0
+    n = 0
+    while abs(z) <= 2 and n <= MAX_ITER:
+        z = z * z + c
+        n += 1
+    return n
 
 
 im = Image.new('RGB',(WIDTH,HEIGHT),(0,0,0))
