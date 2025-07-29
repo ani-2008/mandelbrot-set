@@ -19,7 +19,7 @@ def mandel(c):
     return n
 
 
-im = Image.new('RGB',(WIDTH,HEIGHT),(0,0,0))
+im = Image.new('RGB',(WIDTH,HEIGHT),(255,255,255))
 
 draw = ImageDraw.Draw(im)
 
@@ -28,7 +28,7 @@ for x in range(0,WIDTH):
         c = complex(RE_START + (x / WIDTH) * (RE_END - RE_START), IM_START + (y / HEIGHT) * (IM_END - IM_START))
         m = mandel(c)
 
-        color = 255 - int(m * 255 / MAX_ITER)
+        color = abs(0 - int(m * 255 / MAX_ITER))
         
         draw.point([x,y],(color, color, color))
 
